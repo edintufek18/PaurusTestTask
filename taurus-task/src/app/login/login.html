@@ -1,0 +1,12 @@
+<!-- TODO: Add Better CSS HTML -->
+<div [formGroup]="form">
+  <div class="p-field">
+    <label for="username">Username</label>
+    <input id="username" type="text" formControlName="username"/>
+  </div>
+  <div class="p-field">
+    <label for="password">Password</label>
+    <input id="password" type="text" formControlName="password"/>
+  </div>
+  <button (click)="check_login()"></button>
+</div>

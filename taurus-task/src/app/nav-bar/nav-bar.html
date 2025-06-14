@@ -1,0 +1,34 @@
+<h1>Student Information System</h1>
+<nav>
+  <ul>
+    <li>
+      <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+        Student overview</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/student-add"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        Student add</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/student-edit"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        Student edit</a
+      >
+    </li>
+
+    @if (loginService.loggedIn) {
+    <button (click)="logout()" title="Logout"></button>
+    } @else {
+    <button (click)="login()" title="Login"></button>
+    }
+  </ul>
+</nav>
