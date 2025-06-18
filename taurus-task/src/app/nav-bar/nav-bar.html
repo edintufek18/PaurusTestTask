@@ -1,34 +1,60 @@
-<h1>Student Information System</h1>
-<nav>
-  <ul>
-    <li>
-      <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
-        Student overview</a
-      >
-    </li>
-    <li>
-      <a
-        routerLink="/student-add"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-      >
-        Student add</a
-      >
-    </li>
-    <li>
-      <a
-        routerLink="/student-edit"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-      >
-        Student edit</a
-      >
-    </li>
+<div class="bg-gray-100 text-gray-800">
+  <header class="bg-white shadow-md p-3">
+    <h1 class="text-3xl font-bold text-center text-purple-800">Student Information System</h1>
+  </header>
 
-    @if (loginService.loggedIn) {
-    <button (click)="logout()" title="Logout"></button>
-    } @else {
-    <button (click)="login()" title="Login"></button>
-    }
-  </ul>
-</nav>
+  <nav class="bg-purple-800">
+    <ul class="flex justify-center space-x-6 p-3">
+      <li>
+        <a
+          routerLink="/overview"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-white hover:text-gray-200 font-medium transition-colors"
+        >
+          Overview
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/student-add"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-white hover:text-gray-200 font-medium transition-colors"
+        >
+          Student Add
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/student-edit"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-white hover:text-gray-200 font-medium transition-colors"
+        >
+          Student Edit
+        </a>
+      </li>
+
+      <li>
+        @if (loginService.loggedIn) {
+        <button
+          (click)="logout()"
+          title="Logout"
+          class="ml-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition"
+        >
+          Logout
+        </button>
+        } @else {
+        <button
+          (click)="login()"
+          title="Login"
+          class="ml-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition"
+        >
+          Login
+        </button>
+        }
+      </li>
+    </ul>
+  </nav>
+</div>

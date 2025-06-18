@@ -1,32 +1,126 @@
-<p>student-add works!</p>
-<div class="p-field">
-  <label for="id">Id</label>
-  <input id="id" type="text" />
-</div>
-<div class="p-field">
-  <label for="fullName">Full Name</label>
-  <input id="fullName" type="text" />
-</div>
-<div class="p-field">
-  <label for="gender">Gender</label>
-  <input id="gender" type="text" />
-</div>
-<div class="p-field">
-  <label for="dateOfBirth">Date of birth</label>
-  <input id="dateOfBirth" type="text" />
-</div>
-<div class="p-field">
-  <label for="courses">Courses</label>
-  <input id="courses" type="text" />
-</div>
+<app-nav-bar></app-nav-bar>
+<div
+  class="min-h-[80vh] bg-gray-50 flex items-center justify-center px-4 py-12"
+>
+  <div class="bg-white rounded-2xl shadow-lg w-full max-w-xl p-8 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-800 text-center">Add Student</h2>
 
-@if(isOpen){
-  <div class="p-field">
-  <label for="courses">Test</label>
-  <input id="courses" type="text" />
+    <form
+      [formGroup]="studentForm"
+      (ngSubmit)="submitStudent()"
+      class="space-y-4"
+    >
+      <!-- Full Name -->
+      <div class="p-field">
+        <label class="block text-sm font-medium text-gray-700 mb-1"
+          >Full Name</label
+        >
+        <input
+          formControlName="full_name"
+          type="text"
+          class="w-full px-4 py-2 border text-black border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <!-- Gender -->
+      <div class="p-field">
+        <label class="block text-sm font-medium text-gray-700 mb-1"
+          >Gender</label
+        >
+        <input
+          formControlName="gender"
+          type="text"
+          class="w-full px-4 py-2 border text-black border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <!-- Birth Date -->
+      <div class="p-field">
+        <label class="block text-sm font-medium text-gray-700 mb-1"
+          >Birth Date</label
+        >
+        <input
+          formControlName="birth"
+          type="date"
+          class="w-full px-4 py-2 border text-black border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <!-- Select Course -->
+      <div class="p-field">
+        <label class="block text-sm font-medium bg-white text-gray-700 mb-1"
+          >Select Course</label
+        >
+
+        <!-- <p-dropdown
+          [options]="courses"
+          (onChange)="onCourseChange($event)"
+          optionLabel="name"
+          placeholder="Choose course"
+          class="w-full"
+            dropdownStyleClass="w-full px-4 py-2 border text-black border-gray-300 rounded-lg"
+        ></p-dropdown> -->
+          <p-select
+          [options]="courses"
+          optionLabel="name"
+          placeholder="Choose course"
+          class="w-full"
+          [style]="{'width':'100%'}"
+          (onChange)="onCourseChange($event)"
+        ></p-select>
+
+
+      
+      </div>
+
+      <!-- Grade Input -->
+      <div class="p-field">
+        <label class="block text-sm font-medium text-black mb-1">Grade</label>
+        <p-inputnumber
+          inputId="integeronly"
+          (onInput)="onGradeChange($event)"
+          inputStyleClass="w-full px-4 py-2 border text-black border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <!-- Add Course Button -->
+      <button
+        type="button"
+        (click)="addCourse()"
+        pButton
+        label="Add Course"
+        class="w-full bg-purple-800 hover:bg-purple-900 text-white"
+      ></button>
+
+      <!-- Display Added Courses -->
+      @if (getCourses.length > 0) {
+      <div class="mt-4 text-sm text-gray-800">
+        <strong>Added Courses:</strong>
+        <ul class="list-disc ml-5" formArrayName="courses">
+          @for (course of getCourses.controls; track $index) {
+
+          <li [formGroupName]="$index">
+            {{ course.value.name }} - Grade: {{ course.value.grade }}
+            <button
+              type="button"
+              (click)="removeCourse($index)"
+              class="text-red-500 ml-2"
+            >
+              Remove
+            </button>
+          </li>
+
+          }
+        </ul>
+      </div>
+      }
+      <p-toast />
+      <button
+        type="submit"
+        pButton
+        label="Submit Student"
+        class="w-full bg-purple-800 hover:bg-purple-900 text-white mt-4"
+      ></button>
+    </form>
+  </div>
 </div>
-}
-
-<p-button label="Add Student"></p-button>
-
-  

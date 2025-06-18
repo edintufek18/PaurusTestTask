@@ -1,15 +1,12 @@
 import { Routes } from '@angular/router';
-import { StudentOverview } from './student-overview/student-overview';
+import { Overview } from './overview/overview';
 import { StudentAdd } from './student-add/student-add';
 import { StudentEdit } from './student-edit/student-edit';
 
 export const routes: Routes = [
   {
-    path: 'student-overview',
-    loadComponent: () =>
-      import('./student-overview/student-overview').then(
-        (m) => m.StudentOverview
-      ),
+    path: 'overview',
+    loadComponent: () => import('./overview/overview').then((m) => m.Overview),
   },
   {
     path: 'student-add',
@@ -25,5 +22,5 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./login/login').then((m) => m.Login),
   },
-  { path: '**', redirectTo: 'student-overview' },
+  { path: '**', redirectTo: 'login' },
 ];

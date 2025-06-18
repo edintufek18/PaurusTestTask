@@ -1,0 +1,53 @@
+<div class="min-h-screen bg-purple-50">
+  <app-nav-bar></app-nav-bar>
+
+  <div class="p-6 bg-white shadow-md mx-4 mt-6 rounded-lg">
+    <p-table
+      dataKey="id"
+      [value]="students"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [paginator]="true"
+      [paginatorStyleClass]="'font-semibold '"
+      [rows]="20"
+      [responsiveLayout]="'scroll'"
+      [stripedRows]="true"
+      [showGridlines]="true"
+      [rowHover]="true"
+      class="w-full"
+    >
+      <ng-template pTemplate="header">
+        <tr class="bg-purple-800 text-white text-sm">
+          <th class="px-4 py-2 text-left font-semibold">Full Name</th>
+          <th class="px-4 py-2 text-left font-semibold">Gender</th>
+          <th class="px-4 py-2 text-left font-semibold">Date of Birth</th>
+          <th class="px-4 py-2 text-left font-semibold">Courses</th>
+          <th class="px-4 py-2 text-left font-semibold">Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-student>
+        <tr class="hover:bg-purple-100 text-white hover:text-purple-900 text-sm">
+          <td class="px-4 py-2">{{ student.full_name }}</td>
+          <td class="px-4 py-2">{{ student.gender }}</td>
+          <td class="px-4 py-2">{{ student.birth }}</td>
+          <td class="px-4 py-2">
+            <ul class="list-disc pl-5">
+              <li *ngFor="let course of student.courses">
+                {{ course.name }} ({{ course.grade }})
+              </li>
+            </ul>
+          </td>
+          <td class="px-4 py-2">
+            <button
+              pButton
+              type="button"
+              label="Delete"
+              class="p-button p-button-danger !bg-red-600 hover:!bg-red-700 text-white font-medium px-3 py-1 rounded-md"
+              (click)="deleteStudent(student)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

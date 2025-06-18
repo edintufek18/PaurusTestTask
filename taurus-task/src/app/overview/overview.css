@@ -1,0 +1,35 @@
+/* styles.css or styles.scss */
+::ng-deep .p-paginator .p-paginator-page {
+  color: #6d28d9; /* text-purple-800 */
+  font-weight: 600; /* font-semibold */
+  border-radius: 0.5rem; /* rounded */
+  background-color: #ede9fe; /* bg-purple-100 */
+  transition: background-color 0.2s;
+}
+::ng-deep .p-paginator .p-paginator-page:hover {
+  background-color: #ddd6fe; /* hover:bg-purple-200 */
+}
+
+::ng-deep .p-paginator .p-paginator-current {
+  background-color: #a78bfa; /* bg-purple-300 */
+  color: #fff; /* text-white */
+}
+
+::ng-deep .p-paginator .p-dropdown {
+  color: #6d28d9; /* text-purple-800 */
+  background-color: #ede9fe; /* bg-purple-100 */
+  border-color: #a78bfa; /* border-purple-300 */
+}
+
+::ng-deep .p-datatable-striped tbody tr:nth-child(even) {
+  background-color: #ede9fe !important; 
+  color: black !important; /* Ensure text color is readable */
+}
+::ng-deep .p-datatable-striped tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+  color: #000 !important;
+}
+
+::ng-deep .p-datatable-striped tbody tr:hover {
+  background-color: #e0f7fa !important;
+}

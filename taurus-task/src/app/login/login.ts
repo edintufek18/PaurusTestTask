@@ -9,10 +9,12 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { LoginService } from './login.service';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-login',
-  imports: [TableModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [TableModule, RouterModule, FormsModule, ReactiveFormsModule,ToastModule],
+  providers: [MessageService],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -22,7 +24,8 @@ export class Login {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private messageService: MessageService
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -30,17 +33,18 @@ export class Login {
     });
   }
 
+    showError() {
+        this.messageService.add({severity:'error', summary: 'Error', detail: 'Incorrect username or password'});
+    }
+
   check_login() {
     let username = this.form.get('username')?.value;
     let password = this.form.get('password')?.value;
 
     if (this.loginService.login(username, password)) {
-      this.router.navigate(['/student-overview']);
+      this.router.navigate(['/overview']);
     } else {
-      // Can be added some alert that the password is not ok
-      // First Attempt also can be removed if not used
-      // It is tought to add some red lines and sth along those lines
-      // IF sth goes wrong the first time
+    this.showError()
     }
   }
 }
