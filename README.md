@@ -2,6 +2,8 @@
 
 This repository contains the `taurus-task` project. Follow the instructions below to set up and run the application.
 
+> ⚠️ **Warning:** This guide is for VS Code.
+
 ## Getting Started
 
 To launch the web page and start the JSON server, follow these steps:
